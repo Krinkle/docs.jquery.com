@@ -320,7 +320,7 @@ class JqDocsTemplate extends BaseTemplate {
 				break;
 				case 'VARIANTS':
 ?>
-<div class="<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo 'emptyPortlet'; ?>">
+<div<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' class="emptyPortlet"'; ?>>
 	<h4>
 	<?php foreach ( $this->data['variant_urls'] as $link ): ?>
 		<?php if ( stripos( $link['attributes'], 'selected' ) !== false ): ?>
@@ -340,7 +340,7 @@ class JqDocsTemplate extends BaseTemplate {
 				case 'ACTIONS':
 				$actions = array_merge( $this->data['view_urls'], $this->data['action_urls'] );
 ?>
-<div <?php if ( count( $actions ) == 0 ) echo 'class="emptyPortlet"'; ?>>
+<div<?php if ( count( $actions ) == 0 ) echo ' class="emptyPortlet"'; ?>>
 	<h5><?php $this->msg( 'actions' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
 		<?php foreach ( $actions as $link ): ?>
@@ -352,7 +352,7 @@ class JqDocsTemplate extends BaseTemplate {
 				break;
 				case 'PERSONAL':
 ?>
-<div class="<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo 'emptyPortlet'; ?>">
+<div<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' class="emptyPortlet"'; ?>>
 	<h5><?php $this->msg( 'personaltools' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
 <?php			foreach( $this->getPersonalTools() as $key => $item ) { ?>

@@ -148,23 +148,21 @@ $wgWellFormedXml = false;
 ## Caching and optimization
 
 $wgUseGzip = true;
+$wgShowIPinHeader = false;
+$wgDisableAnonTalk = true;
 
+# Set up parser cache
 $wgEnableParserCache = true;
 
-# Don't show "anonymous user <IP here>" in headings,
-# this wiki is mostly for reading. Also keeps it cacheable.
-$wgShowIPinHeader = false;
-
-# Shared memory settings
-# CACHE_DB: object_cache table in db
-# CACHE_ACCEL: faster, but needs php-apc installed
-$wgMainCacheType = CACHE_ACCEL;
-
-# File cache at "/var/www/<domain>/mw-cache", sibling of public_html
+# Set up file cache (at "/var/www/<domain>/mw-cache", sibling of public_html)
 $wgUseFileCache = true;
 $wgCacheDirectory = dirname( $IP ) . '/mw-cache';
 
-$wgDisableAnonTalk = true;
+# Set up Memcached
+$wgMemCachedServers = array( '127.0.0.1:11211' );
+
+# Prefer Memcached
+$wgMainCacheType = CACHE_MEMCACHED;
 
 ## Set user permissions:
 
