@@ -41,8 +41,8 @@ class SkinJqDocs extends SkinTemplate {
 		$out->addScriptFile( 'http://static.jquery.com/files/rocker/scripts/custom.js' );
 
 		// JqDocs MediaWiki Skin modules
-		$out->addModuleStyles( 'skins.jqdocs.static' );
-		$out->addModules( 'skins.jqdocs.scripts' );
+		$out->addModuleStyles( 'skins.jqdocs.layout' );
+		$out->addModules( 'skins.jqdocs.enhanced' );
 	}
 
 	/**

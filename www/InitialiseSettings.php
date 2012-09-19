@@ -87,6 +87,8 @@ require_once( "$ExtPath/ParserFunctions/ParserFunctions.php" );
 
 require_once( "$ExtPath/DynamicPageList/DynamicPageList.php" );
 
+require_once( "$ExtPath/JqDocsSkin/JqDocsSkin.php" );
+
 
 /**@}*/
 
@@ -99,7 +101,29 @@ require_once( "$ExtPath/DynamicPageList/DynamicPageList.php" );
 
 ## Settings specifically for stage and production
 
+
+$isStage = false;
+
 if ( WebRequest::detectServer() === 'http://stage.docs.jquery.com' ) {
+	$isStage = true;
+}
+
+if ( $wgCommandLineMode ) {
+	if ( defined( 'MW_DB' ) ) {
+		if ( in_array( MW_DB, array( 'jqdocs_docs', 'jqdocs_stage' ) ) ) {
+			$isStage = MW_DB === 'jqdocs_stage';
+		} else {
+			die( 'Unknown wiki: ' . MW_DB . "\n" );
+		}
+	} else {
+		// Can't guess server from the CLI
+		// --wiki jqdocs_stage or --wiki jqdocs_docs
+		die( 'Command-line mode must specify which --wiki should be acted on. jqdocs_stage or jqdocs_docs.' . "\n" );
+	}
+}
+
+
+if ( $isStage ) {
 
 	// Stage settings:
 
@@ -136,33 +160,6 @@ $wgFavicon = 'http://static.jquery.com/favicon.ico';
 ## Disabled by default, but enabled for jqdocs for backwards compatibility.
 $wgRawHtml = true;
 $wgWellFormedXml = false;
-
-## JqDocs Skin
-$wgExtensionFunctions[] = 'efSetupJqDocsSkin';
-function efSetupJqDocsSkin() {
-	global $wgResourceModules, $wgStylePath, $wgStyleDirectory;
-
-	// This is loaded for all pages and doesn't depend on javacript
-	// (loaded through <link>)
-	$wgResourceModules['skins.jqdocs.static'] = array(
-		'styles' => 'jqdocs/screen.css',
-
-		'remoteBasePath' => $wgStylePath,
-		'localBasePath' => $wgStyleDirectory,
-	);
-
-	// Dynamic scripts (and dependencies) are loaded
-	// asynchronous through AJAX
-	$wgResourceModules['skins.jqdocs.scripts'] = array(
-		'scripts' => 'jqdocs/jqdocs.js',
-		'dependencies' => array(
-			'jquery.ui.tabs',
-		),
-
-		'remoteBasePath' => $wgStylePath,
-		'localBasePath' => $wgStyleDirectory,
-	);
-}
 
 
 ## Set user permissions:
