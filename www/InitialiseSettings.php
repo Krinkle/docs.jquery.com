@@ -117,6 +117,10 @@ if ( $isStage ) {
 }
 
 
+## Don't show links to talk pages to readers
+$wgDisableAnonTalk = true;
+
+
 ## Action paths, like "/edit/Page_name"
 $actions = array(
 	'view', 'edit', 'watch', 'unwatch', 'delete','revert', 'rollback',
@@ -147,22 +151,31 @@ $wgWellFormedXml = false;
 
 ## Caching and optimization
 
+# Optimizations
 $wgUseGzip = true;
-$wgShowIPinHeader = false;
-$wgDisableAnonTalk = true;
+$wgEnableSidebarCache = true;
+$wgCompressRevisions = true;
+$wgHitcounterUpdateFreq = 10;
 
 # Set up parser cache
 $wgEnableParserCache = true;
 
 # Set up file cache (at "/var/www/<domain>/mw-cache", sibling of public_html)
-$wgUseFileCache = true;
+$wgShowIPinHeader = false;
 $wgCacheDirectory = dirname( $IP ) . '/mw-cache';
+
+# Set up wiki page cache
+$wgFileCacheDirectory = "{$wgCacheDirectory}/html";
 
 # Set up Memcached
 $wgMemCachedServers = array( '127.0.0.1:11211' );
 
-# Prefer Memcached
-$wgMainCacheType = CACHE_MEMCACHED;
+# Now that its all set up, use it
+$wgMainCacheType = CACHE_ACCEL;
+$wgMessageCacheType = CACHE_ACCEL;
+$wgParserCacheType = CACHE_ACCEL;
+$wgUseFileCache = true;
+
 
 ## Set user permissions:
 
