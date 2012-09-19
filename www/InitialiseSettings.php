@@ -105,6 +105,8 @@ if ( $isStage ) {
 	$wgDBname = 'jqdocs_stage';
 	$wgServer = 'http://stage.docs.jquery.com';
 
+	$wgReadOnly = '<div class="usermessage">This is the staging wiki. It runs on a fixed snapshot of the live wiki. Please make edits on the live wiki instead.</div>';
+
 	error_reporting( -1 );
 
 	$wgShowExceptionDetails = true;
