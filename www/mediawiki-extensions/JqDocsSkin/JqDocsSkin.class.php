@@ -179,7 +179,7 @@ class JqDocsTemplate extends BaseTemplate {
 				 * sidebar
 				 *
 				 */
-				$this->renderNavigation( array( 'ACTIONS', 'PERSONAL' ) );
+				$this->renderNavigation( array( 'NAMESPACES', 'ACTIONS', 'PERSONAL' ) );
 			?>
 		</div><!-- /#interiorNavigation -->
 		<div id="jq-primaryContent">
@@ -304,34 +304,15 @@ class JqDocsTemplate extends BaseTemplate {
 		}
 		// Render elements
 		foreach ( $elements as $name => $element ) {
-			echo "\n<!-- {$name} -->\n";
+			echo "\n<!-- {$element} -->\n";
 			switch ( $element ) {
 				case 'NAMESPACES':
 ?>
-<div class="<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo 'emptyPortlet'; ?>">
+<div<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' class="emptyPortlet"'; ?>>
 	<h5><?php $this->msg( 'namespaces' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
 		<?php foreach ( $this->data['namespace_urls'] as $link ): ?>
-			<li <?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></span></li>
-		<?php endforeach; ?>
-	</ul>
-</div>
-<?php
-				break;
-				case 'VARIANTS':
-?>
-<div<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' class="emptyPortlet"'; ?>>
-	<h4>
-	<?php foreach ( $this->data['variant_urls'] as $link ): ?>
-		<?php if ( stripos( $link['attributes'], 'selected' ) !== false ): ?>
-			<?php echo htmlspecialchars( $link['text'] ) ?>
-		<?php endif; ?>
-	<?php endforeach; ?>
-	</h4>
-	<h5><?php $this->msg( 'variants' ) ?></h5>
-	<ul>
-		<?php foreach ( $this->data['variant_urls'] as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" lang="<?php echo htmlspecialchars( $link['lang'] ) ?>" hreflang="<?php echo htmlspecialchars( $link['hreflang'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+		<li <?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></span></li>
 		<?php endforeach; ?>
 	</ul>
 </div>
@@ -343,9 +324,13 @@ class JqDocsTemplate extends BaseTemplate {
 <div<?php if ( count( $actions ) == 0 ) echo ' class="emptyPortlet"'; ?>>
 	<h5><?php $this->msg( 'actions' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
-		<?php foreach ( $actions as $link ): ?>
-			<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-		<?php endforeach; ?>
+<?php
+	foreach ( $actions as $link ) {
+?>
+		<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+<?php
+	}
+?>
 	</ul>
 </div>
 <?php
@@ -355,16 +340,20 @@ class JqDocsTemplate extends BaseTemplate {
 <div<?php if ( count( $this->data['personal_urls'] ) == 0 ) echo ' class="emptyPortlet"'; ?>>
 	<h5><?php $this->msg( 'personaltools' ) ?></h5>
 	<ul<?php $this->html( 'userlangattributes' ) ?>>
-<?php			foreach( $this->getPersonalTools() as $key => $item ) { ?>
+<?php
+	foreach ( $this->getPersonalTools() as $key => $item ) {
+?>
 		<?php echo $this->makeListItem( $key, $item ); ?>
 
-<?php			} ?>
+<?php
+	}
+?>
 	</ul>
 </div>
 <?php
 				break;
 			}
-			echo "\n<!-- /{$name} -->\n";
+			echo "\n<!-- /{$element} -->\n";
 		}
 	}
 }
