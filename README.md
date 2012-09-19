@@ -7,7 +7,7 @@ Symlink the `/var/docs.jquery.com` directory to the `www` directory of this repo
 * mediawiki-core (`git clone https://gerrit.wikimedia.org/r/p/mediawiki/core.git`)
 * mediawiki-extensions
  * ParserFunctions (`git clone https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git`)
- * DynamicPageList (`svn co https://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions/DynamicPageList/`)
+ * DynamicPageList (`svn co https://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions/DynamicPageList`)
  * Interwiki (`git clone https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Interwiki.git`)
 * mw-cache (`chmod 777`)
 
@@ -26,7 +26,7 @@ $wgUpgradeKey = '***'; # Random 16-char hash
 
 ```
 
-The first time mediawiki-core is cloned, make sure to run the installer (follow instructions from the web interface). Then overwrite  `mediawiki-core/LocalSettings.php` with this (adjust path if needed):
+If this is a new installation (no existing database) make sure to run the MediaWiki installer (follow instructions from the web interface). Either way, overwrite  `mediawiki-core/LocalSettings.php` with the following (adjust path if needed):
 
 ```php
 <?php

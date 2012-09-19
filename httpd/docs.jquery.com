@@ -1,27 +1,31 @@
 <VirtualHost *:80>
-ServerName docs.jquery.com
-DocumentRoot /var/www/docs.jquery.com/public_html
-ServerAlias docs.jquery.com
+	ServerName docs.jquery.com
+	DocumentRoot /var/www/docs.jquery.com/public_html
+	ServerAlias docs.jquery.com
 
 	ErrorLog /var/log/apache2/docs.jquery.com.error.log
 	CustomLog /var/log/apache2/docs.jquery.com.access.log custom
 
-<Directory "/var/www/docs.jquery.com/public_html">
-allow from all
-Options +Indexes
+	<Directory "/var/www/docs.jquery.com/public_html">
+		Allow from all
+		Options +Indexes +FollowSymLinks
 
-RewriteEngine On
+		# For the list of redirects from pages that now live somewhere
+		# else, see public_html/.htaccess
 
-RewriteRule ^Ajax$ http://api.jquery.com/category/ajax/ [R=301,L]
+		# MediaWiki configuration
+		# See also: https://www.mediawiki.org/wiki/Manual:Short_URL/Apache
 
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^.*$ - [S=51]
+		RewriteEngine On
 
-RewriteRule ^action/([a-z]*)/(.*)$ /index.php?action=$1&title=$2 [L,QSA]
+		# Short url for wiki page from the root
+		RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+		RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+		RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/mw/index.php [L]
 
-RewriteRule ^(.*)$ /index.php?title=$1 [L,QSA]
-</Directory>
+		## Redirect / to the Main Page
+		RewriteRule ^/*$ %{DOCUMENT_ROOT}/mw/index.php [L]
+	</Directory>
 </VirtualHost>
 
 
