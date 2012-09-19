@@ -1,0 +1,35 @@
+#
+# These pages now live off-wiki:
+#
+
+
+Redirect 301 /Donate http://jquery.org/donate
+Redirect 301 /About http://jquery.org/
+Redirect 301 /About/Contributors http://jquery.org/team
+Redirect 301 /Contributors http://jquery.org/team
+Redirect 301 /Licensing http://jquery.org/license
+Redirect 301 /License http://jquery.org/license
+Redirect 301 /History_of_jQuery http://jquery.org/history
+Redirect 301 /Design_and_Identity http://jquery.org/about
+
+Redirect 301 /Ajax http://api.jquery.com/category/ajax/
+Redirect 301 /Selectors http://api.jquery.com/category/selectors/
+
+Redirect 301 /Selectors/nthChild http://api.jquery.com/nth-child-selector/
+Redirect 301 /Selectors/firstChild http://api.jquery.com/first-child-selector/
+Redirect 301 /Selectors/lastChild http://api.jquery.com/last-child-selector/
+Redirect 301 /Selectors/onlyChild http://api.jquery.com/only-child-selector/
+Redirect 301 /Selectors/next http://api.jquery.com/next-adjacent-selector/
+Redirect 301 /Selectors/siblings http://api.jquery.com/next-siblings-selector/
+
+Redirect 301 /Selectors/attributeHas http://api.jquery.com/has-attribute-selector/
+Redirect 301 /Selectors/attributeEquals http://api.jquery.com/attribute-equals-selector/
+Redirect 301 /Selectors/attributeNotEqual http://api.jquery.com/attribute-not-equal-selector/
+Redirect 301 /Selectors/attributeStartsWith http://api.jquery.com/attribute-starts-with-selector/
+Redirect 301 /Selectors/attributeEndsWith http://api.jquery.com/attribute-ends-with-selector/
+Redirect 301 /Selectors/attributeContains http://api.jquery.com/attribute-contains-selector/
+Redirect 301 /Selectors/attributeContains http://api.jquery.com/attribute-contains-selector/
+
+Redirect 301 /Plugins http://plugins.jquery.com/
+
+# Do not use RewriteEngine and RewriteRule here
