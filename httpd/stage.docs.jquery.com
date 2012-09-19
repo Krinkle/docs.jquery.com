@@ -1,12 +1,12 @@
 <VirtualHost *:80>
-	ServerName docs.jquery.com
-	DocumentRoot /var/www/docs.jquery.com/public_html
-	ServerAlias docs.jquery.com
+	ServerName stage.docs.jquery.com
+	DocumentRoot /var/www/stage.docs.jquery.com/public_html
+	ServerAlias stage.docs.jquery.com
 
-	ErrorLog /var/log/apache2/docs.jquery.com.error.log
-	CustomLog /var/log/apache2/docs.jquery.com.access.log custom
+	ErrorLog /var/log/apache2/stage.docs.jquery.com.error.log
+	CustomLog /var/log/apache2/stage.docs.jquery.com.access.log custom
 
-	<Directory "/var/www/docs.jquery.com/public_html">
+	<Directory "/var/www/stage.docs.jquery.com/public_html">
 		Allow from all
 		Options +Indexes +FollowSymLinks
 
