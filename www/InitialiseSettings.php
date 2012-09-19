@@ -85,15 +85,10 @@ if ( WebRequest::detectServer() === 'http://stage.docs.jquery.com' ) {
 
 if ( $wgCommandLineMode ) {
 	if ( defined( 'MW_DB' ) ) {
-		if ( in_array( MW_DB, array( 'jqdocs_docs', 'jqdocs_stage' ) ) ) {
-			$isStage = MW_DB === 'jqdocs_stage';
-		} else {
-			die( 'Unknown wiki: ' . MW_DB . "\n" );
-		}
+		$isStage = MW_DB !== 'jqdocs_live';
 	} else {
 		// Can't guess server from the CLI
-		// --wiki jqdocs_stage or --wiki jqdocs_docs
-		die( 'Command-line mode must specify which --wiki should be acted on. jqdocs_stage or jqdocs_docs.' . "\n" );
+		die( 'Command-line mode must specify which --wiki should be acted on.' . "\n" );
 	}
 }
 
@@ -223,7 +218,6 @@ $wgGroupPermissions['wiki-admin']['interwiki']  = true;
 ## Hide old user preferences
 
 # personal
-$wgHiddenPrefs[] = 'skin';
 $wgHiddenPrefs[] = 'realname';
 $wgHiddenPrefs[] = 'nickname';
 $wgHiddenPrefs[] = 'fancysig';
