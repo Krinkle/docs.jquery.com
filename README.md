@@ -8,6 +8,7 @@ Symlink the `/var/docs.jquery.com` directory to the `www` directory of this repo
 * mediawiki-extensions
  * ParserFunctions (`git clone https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git`)
  * DynamicPageList (`svn co https://svn.wikimedia.org/svnroot/mediawiki/trunk/extensions/DynamicPageList/`)
+ * Interwiki (`git clone https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Interwiki.git`)
 * mw-cache (`chmod 777`)
 
 Also create a `PrivateSettings.php` file in the `www` directory, and make sure it has the following (fill in the blanks):
@@ -30,7 +31,7 @@ The first time mediawiki-core is cloned, make sure to run the installer (follow 
 ```php
 <?php
 
-require_once( '/home/jqadmin/docs.jquery.com/www/InitialiseSettings.php' );
+require_once( dirname( __DIR__ ) . '/InitialiseSettings.php' );
 ```
 
 ## httpd

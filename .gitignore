@@ -1,5 +1,6 @@
 www/mediawiki-core
-www/mediawiki-extensions/ParserFunctions
 www/mediawiki-extensions/DynamicPageList
+www/mediawiki-extensions/Interwiki
+www/mediawiki-extensions/ParserFunctions
 www/mw-cache
 www/PrivateSettings.php

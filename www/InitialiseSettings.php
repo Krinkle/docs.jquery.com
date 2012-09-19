@@ -15,18 +15,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-
-/************************************************************************
- * @section   Include dependencies
- *
- * @{
- */
-
-require_once( __DIR__ . '/PrivateSettings.php' );
-
-
-/**@}*/
-
 /************************************************************************
  * @section   MediaWiki core: Base settings
  *
@@ -54,25 +42,11 @@ $wgEnableUploads  = false;
 # InstantCommons allows wiki to use images from http://commons.wikimedia.org
 $wgUseInstantCommons  = false;
 
-## Shared memory settings
-$wgMainCacheType = CACHE_ACCEL;
-
-// Static file cache at "/var/www/<domain>/mw-cache", sibling of public_html
-$wgCacheDirectory = dirname( $IP ) . '/mw-cache';
-
-
 ## We installed MediaWiki from Git
 ## Extensions are seperate clones in a higher directory, fix paths:
 $ExtPath = dirname( realpath( $IP ) ) . '/mediawiki-extensions';
 $wgExtensionAssetsPath = '/mw-extensions';
 
-## Debugging
-if ( false ) {
-	error_reporting( -1 );
-
-	$wgShowExceptionDetails = true;
-	$wgDebugToolbar = false;
-}
 
 /**@}*/
 
@@ -83,11 +57,13 @@ if ( false ) {
  * @{
  */
 
-require_once( "$ExtPath/ParserFunctions/ParserFunctions.php" );
-
 require_once( "$ExtPath/DynamicPageList/DynamicPageList.php" );
 
+require_once( "$ExtPath/Interwiki/Interwiki.php" );
+
 require_once( "$ExtPath/JqDocsSkin/JqDocsSkin.php" );
+
+require_once( "$ExtPath/ParserFunctions/ParserFunctions.php" );
 
 
 /**@}*/
@@ -100,7 +76,6 @@ require_once( "$ExtPath/JqDocsSkin/JqDocsSkin.php" );
  */
 
 ## Settings specifically for stage and production
-
 
 $isStage = false;
 
@@ -130,12 +105,18 @@ if ( $isStage ) {
 	$wgDBname = 'jqdocs_stage';
 	$wgServer = 'http://stage.docs.jquery.com';
 
+	error_reporting( -1 );
+
+	$wgShowExceptionDetails = true;
+
 } else {
 
 	// Production settings:
 
-	$wgDBname = 'jqdocs_docs';
+	$wgDBname = 'jqdocs_live';
 	$wgServer = 'http://docs.jquery.com';
+
+	error_reporting( 0 );
 }
 
 
@@ -148,9 +129,14 @@ foreach ( $actions as $action ) {
 	$wgActionPaths[$action] = "/$action/$1";
 }
 
-# Override view, use "/Page_name" for regular page views.
+
+## Override view, use "/Page_name" for regular page views.
 $wgArticlePath = $wgActionPaths['view'] = "/$1";
 
+
+## Subpages
+# Enable in the main namespace
+$wgNamespacesWithSubpages[NS_MAIN] = true;
 
 ## Global *.jquery.com favicon from static
 $wgFavicon = 'http://static.jquery.com/favicon.ico';
@@ -161,6 +147,27 @@ $wgFavicon = 'http://static.jquery.com/favicon.ico';
 $wgRawHtml = true;
 $wgWellFormedXml = false;
 
+
+## Caching and optimization
+
+$wgUseGzip = true;
+
+$wgEnableParserCache = true;
+
+# Don't show "anonymous user <IP here>" in headings,
+# this wiki is mostly for reading. Also keeps it cacheable.
+$wgShowIPinHeader = false;
+
+# Shared memory settings
+# CACHE_DB: object_cache table in db
+# CACHE_ACCEL: faster, but needs php-apc installed
+$wgMainCacheType = CACHE_ACCEL;
+
+# File cache at "/var/www/<domain>/mw-cache", sibling of public_html
+$wgUseFileCache = true;
+$wgCacheDirectory = dirname( $IP ) . '/mw-cache';
+
+$wgDisableAnonTalk = true;
 
 ## Set user permissions:
 
@@ -207,6 +214,9 @@ $wgGroupPermissions['wiki-admin']['reupload-shared'] = true;
 # Enable delete-revision feature
 $wgGroupPermissions['wiki-admin']['deleterevision']  = true;
 
+# Extension:Interwiki
+$wgGroupPermissions['wiki-admin']['interwiki']  = true;
+
 
 ## Hide old user preferences
 
@@ -249,3 +259,14 @@ $wgDefaultUserOptions['searchlimit'] = 25;
 # watchlist
 $wgDefaultUserOptions['watchlistdays'] = 0;
 
+
+/************************************************************************
+ * @section   Include other files (must be last)
+ *
+ * @{
+ */
+
+require_once( __DIR__ . '/PrivateSettings.php' );
+
+
+/**@}*/

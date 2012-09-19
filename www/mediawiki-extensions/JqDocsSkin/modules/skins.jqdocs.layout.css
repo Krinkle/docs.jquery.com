@@ -3,14 +3,18 @@
  * Based on  'monobook' stylesheet from MediaWiki 1.8.2
  */
 
-
-
 /* Overrides for jQuery Rocket theme */
-#jq-primaryContent a, #jq-primaryContent a:visited {
+#jq-primaryContent .mw-body a,
+#jq-primaryContent .mw-body a:visited {
 	text-decoration: none;
 }
-#jq-primaryContent a:hover {
+#jq-primaryContent .mw-body a:hover {
 	text-decoration: underline;
+}
+
+#jq-primaryContent .mw-body a.new,
+#jq-primaryContent .mw-body a.new:visited {
+	color: #BA0000;
 }
 
 /**
