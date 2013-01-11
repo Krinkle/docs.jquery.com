@@ -114,6 +114,30 @@ if ( $isStage ) {
 	error_reporting( 0 );
 }
 
+## Make interwiki redirects to trusted sites use 301 (default behavior is 302)
+
+/**
+ * @param Title &$title
+ * @param WebRequest &$request
+ * @param bool &$ignoreRedirect
+ * @param bool|string|Title &$target
+ * @param Article &$article
+ */
+function efInterwikiRedirectPage301( &$title, &$request, &$ignoreRedirect, &$target, &$article ) {
+	global $wgDisableHardRedirects;
+	if ( !$ignoreRedirect && !$target && $article->isRedirect() ) {
+		$maybeUrl = $article->followRedirect();
+		if ( is_string( $maybeUrl ) && !$wgDisableHardRedirects ) {
+			$article->getContext()->getOutput()->redirect( $maybeUrl, 301 );
+			// We've handled it, so the rest of the code should no longer act on this redirect
+			$ignoreRedirect = true;
+		}
+	}
+
+	return true;
+}
+$wgHooks['InitializeArticleMaybeRedirect'][] = 'efInterwikiRedirectPage301';
+
 
 ## Don't show links to talk pages to readers
 $wgDisableAnonTalk = true;
