@@ -79,10 +79,6 @@ require_once( "$ExtPath/ParserFunctions/ParserFunctions.php" );
 
 $isStage = false;
 
-if ( WebRequest::detectServer() === 'http://stage.docs.jquery.com' ) {
-	$isStage = true;
-}
-
 if ( $wgCommandLineMode ) {
 	if ( defined( 'MW_DB' ) ) {
 		$isStage = MW_DB !== 'jqdocs_live';
@@ -90,6 +86,8 @@ if ( $wgCommandLineMode ) {
 		// Can't guess server from the CLI
 		die( 'Command-line mode must specify which --wiki should be acted on.' . "\n" );
 	}
+} elseif ( WebRequest::detectServer() === 'http://stage.docs.jquery.com' ) {
+	$isStage = true;
 }
 
 
@@ -168,7 +166,8 @@ $wgCacheDirectory = dirname( $IP ) . '/mw-cache';
 $wgFileCacheDirectory = "{$wgCacheDirectory}/html";
 
 # Set up Memcached
-$wgMemCachedServers = array( '127.0.0.1:11211' );
+#$wgMemCachedServers = array( '127.0.0.1:11211' );
+$wgMemCachedServers = array();
 
 # Now that its all set up, use it
 $wgMainCacheType = CACHE_ACCEL;
