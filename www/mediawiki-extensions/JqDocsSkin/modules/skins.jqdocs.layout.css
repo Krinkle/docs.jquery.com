@@ -255,7 +255,8 @@ pre {
 	display: none;
 }
 
-#contentSub, #contentSub2 {
+#contentSub,
+#contentSub2 {
 	font-size: 84%;
 	line-height: 1.2em;
 	margin: 0 0 1.4em 1em;
@@ -355,12 +356,13 @@ in the bottom-right corner of the content area */
 	width: 100%;
 	text-align: center;
 }
-*.center * {
+.center * {
 	margin-left: auto;
 	margin-right: auto;
 }
 /* small for tables and similar */
-.small, .small * {
+.small,
+.small * {
 	font-size: 94%;
 }
 table.small {
@@ -704,9 +706,10 @@ special external link styling */
 	margin: 0;
 }
 
-/*
-** footer
-*/
+/**
+ * Footer
+ */
+
 #footer {
 	background-color: white;
 	border-top: 1px solid #fabd23;
@@ -716,13 +719,19 @@ special external link styling */
 	text-align: center;
 	font-size: 90%;
 }
+
 #footer li {
 	display: inline;
 	margin: 0 1.3em;
 }
+
 /* hide from incapable browsers */
-head:first-child+body #footer li { white-space: nowrap; }
-#f-poweredbyico, #f-copyrightico {
+head:first-child + body #footer li {
+	white-space: nowrap;
+}
+
+#f-poweredbyico,
+#f-copyrightico {
 	margin: 0 8px;
 	position: relative;
 	top: -2px; /* Bump it up just a tad */
@@ -860,11 +869,12 @@ div#userlogin .captcha {
 	border: 1px solid #bbb;
 	padding: 1.5em 2em;
 	width: 400px;
-	background-color: white;
+	background-color: #fff;
 }
 
 
-#userloginprompt, #languagelinks {
+#userloginprompt,
+#languagelinks {
 	font-size: 85%;
 }
 
@@ -874,15 +884,20 @@ div#userlogin .captcha {
 	padding-top: 2em;
 }
 
-#userlogin .loginText, #userlogin .loginPassword {
+#userlogin .loginText,
+#userlogin .loginPassword {
 	width: 12em;
 }
 
-#userloginlink a, #wpLoginattempt, #wpCreateaccount {
+#userloginlink a
+ #wpLoginattempt,
+#wpCreateaccount {
 	font-weight: bold;
 }
 
-#pagehistory li.selected { position: relative; }
+#pagehistory li.selected {
+	position: relative;
+}
 
 .redirectText {
 	font-size: 150%;
@@ -1038,7 +1053,8 @@ table.mw_metadata {
 	border-collapse: collapse;
 }
 
-table.mw_metadata td, table.mw_metadata th {
+table.mw_metadata td,
+table.mw_metadata th {
 	text-align: center;
 	border: 1px solid #aaaaaa;
 	padding-left: 0.1em;
@@ -1057,8 +1073,6 @@ table.collapsed tr.collapsable {
 	display: none;
 }
 
-
-/* filetoc */
 ul#filetoc {
 	text-align: center;
 	border: 1px solid #aaaaaa;
