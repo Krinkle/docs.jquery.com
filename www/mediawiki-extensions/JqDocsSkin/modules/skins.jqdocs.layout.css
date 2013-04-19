@@ -845,9 +845,12 @@ div.prefsectiontip {
 	margin-top: 2em;
 }
 
-.allpagesredirect a,
-.redirect-in-category a,
-.watchlistredir {
+/* Specific selector needed due to strength of selector
+ * for anchor tags in the jQuery Rocket theme.
+ */
+#jq-primaryContent .mw-body .allpagesredirect a,
+#jq-primaryContent .mw-body .redirect-in-category a,
+#jq-primaryContent .mw-body .watchlistredir {
 	color: #008000;
 }
 
@@ -895,8 +898,8 @@ div#userlogin .captcha {
 	width: 12em;
 }
 
-#userloginlink a
- #wpLoginattempt,
+#userloginlink a,
+#wpLoginattempt,
 #wpCreateaccount {
 	font-weight: bold;
 }
