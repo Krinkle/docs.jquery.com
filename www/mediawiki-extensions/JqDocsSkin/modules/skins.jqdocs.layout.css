@@ -845,6 +845,12 @@ div.prefsectiontip {
 	margin-top: 2em;
 }
 
+.allpagesredirect a,
+.redirect-in-category a,
+.watchlistredir {
+	color: #008000;
+}
+
 div#userloginForm form,
 div#userlogin form#userlogin2 {
 	margin: 0 3em 1em 0;
