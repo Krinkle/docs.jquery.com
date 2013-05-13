@@ -1161,6 +1161,9 @@ p.revision_saved {
 	background-color: #f0f0ff;
 }
 
+#mw-prefixindex-list-table {
+	table-layout: fixed;
+}
 
 /* noarticletext */
 div.noarticletext {
