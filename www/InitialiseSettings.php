@@ -173,6 +173,7 @@ $wgUseGzip = true;
 $wgEnableSidebarCache = true;
 $wgCompressRevisions = true;
 $wgHitcounterUpdateFreq = 10;
+$wgSessionsInObjectCache = true;
 
 // Set up parser cache
 $wgEnableParserCache = true;
