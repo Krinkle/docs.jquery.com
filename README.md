@@ -2,7 +2,7 @@
 
 ## www
 
-Symlink the `/var/docs.jquery.com` directory to the `www` directory of this repository. Then set up the following sub tree:
+Symlink the `/var/www/docs.jquery.com` directory to the `www` directory in this repository. Then set up the following sub tree:
 
 * mediawiki-core (`git clone https://gerrit.wikimedia.org/r/p/mediawiki/core.git`)
 * mediawiki-extensions
