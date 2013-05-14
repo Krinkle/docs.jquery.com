@@ -185,8 +185,8 @@ $wgCacheDirectory = dirname( $IP ) . '/mw-cache';
 $wgFileCacheDirectory = "{$wgCacheDirectory}/html";
 
 // Set up Memcached
-#$wgMemCachedServers = array( '127.0.0.1:11211' );
-$wgMemCachedServers = array();
+$wgMemCachedServers = array( '127.0.0.1:11211' );
+#$wgMemCachedServers = array();
 
 // Now that its all set up, use it
 $wgMainCacheType = CACHE_ACCEL;
