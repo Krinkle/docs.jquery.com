@@ -39,6 +39,6 @@ Add `httpd/docs.jquery.com` conf file to `/etc/apache2/sites-enabled`.
 
 ## misc
 
-* Create `/var/log/mediawiki` (chmod 775).
+* Create `/var/log/mediawiki` (chmod 775 jqadmin:jqadmin).
 * Symlink `misc/logrotate.conf` to `/etc/logrotate.d/mediawiki`.
 * Using `misc/sample-cron.txt` as example, add an entry to `/etc/crontab`.
