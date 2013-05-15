@@ -165,6 +165,13 @@ $wgHooks['InitializeArticleMaybeRedirect'][] = 'efInterwikiRedirectPage301';
 // Enable in the main namespace
 $wgNamespacesWithSubpages[NS_MAIN] = true;
 
+## Job queue
+
+// Don't run job queue within the http request at all
+// Be sure to setup a cron job for maintenance/runJobs.php,
+// otherwise the jobs aren't ran at all!
+$wgJobRunRate = 0;
+
 
 ## Caching and optimization
 
