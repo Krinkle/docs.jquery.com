@@ -1,0 +1,3 @@
+# TIME        USR  CMD
+#
+# */2 * * * * root /usr/bin/php /path/to/docs.jquery.com/www/mediawiki-core/maintenance/runJobs.php --wiki jqdocs_live >> /var/log/mediawiki/runJobs.log
