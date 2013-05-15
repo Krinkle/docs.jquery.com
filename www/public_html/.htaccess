@@ -1,19 +1,2 @@
-#
-# These pages now live off-wiki:
-#
-
-Redirect 301 /Selectors/nthChild http://api.jquery.com/nth-child-selector/
-Redirect 301 /Selectors/firstChild http://api.jquery.com/first-child-selector/
-Redirect 301 /Selectors/lastChild http://api.jquery.com/last-child-selector/
-Redirect 301 /Selectors/onlyChild http://api.jquery.com/only-child-selector/
-Redirect 301 /Selectors/next http://api.jquery.com/next-adjacent-selector/
-Redirect 301 /Selectors/siblings http://api.jquery.com/next-siblings-selector/
-Redirect 301 /Selectors/attributeHas http://api.jquery.com/has-attribute-selector/
-Redirect 301 /Selectors/attributeEquals http://api.jquery.com/attribute-equals-selector/
-Redirect 301 /Selectors/attributeNotEqual http://api.jquery.com/attribute-not-equal-selector/
-Redirect 301 /Selectors/attributeStartsWith http://api.jquery.com/attribute-starts-with-selector/
-Redirect 301 /Selectors/attributeEndsWith http://api.jquery.com/attribute-ends-with-selector/
-Redirect 301 /Selectors/attributeContains http://api.jquery.com/attribute-contains-selector/
-Redirect 301 /Selectors/attributeContains http://api.jquery.com/attribute-contains-selector/
-
-# Do not use RewriteEngine and RewriteRule here
+# No redirects here! Use wikisyntax instead.
+# No RewriteEngine/RewriteRule here! Use httpd config files instead of htaccess.
