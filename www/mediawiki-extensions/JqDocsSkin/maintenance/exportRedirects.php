@@ -106,7 +106,7 @@ class ExportRedirectsScript extends Maintenance {
 				break;
 			case 'nginx':
 				if ( $to === null ) {
-					$line = '# ' . $comment;
+					$line = "# [[$from]]: $comment";
 				} else {
 					// rewrite ^{from_path} {to_full_url} permanent;
 					$line = 'rewrite ^' . $from->getLocalURL() . ' ' . $to . ' permanent;';
@@ -114,7 +114,7 @@ class ExportRedirectsScript extends Maintenance {
 				break;
 			case 'apache':
 				if ( $to === null ) {
-					$line = '# ' . $comment;
+					$line = "# [[$from]]: $comment";
 				} else {
 					// rewrite ^{from_path} {to_full_url} permanent;
 					$line = 'Redirect 301 ' . $from->getLocalURL() . ' ' . $to;
