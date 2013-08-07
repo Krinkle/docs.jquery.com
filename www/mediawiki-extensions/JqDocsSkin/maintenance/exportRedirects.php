@@ -109,7 +109,7 @@ class ExportRedirectsScript extends Maintenance {
 					$line = "# [[$from]]: $comment";
 				} else {
 					// rewrite ^{from_path} {to_full_url} permanent;
-					$line = 'rewrite ^' . $from->getLocalURL() . ' ' . $to . ' permanent;';
+					$line = 'rewrite ^' . $from->getLocalURL() . '$ ' . $to . ' permanent;';
 				}
 				break;
 			case 'apache':
